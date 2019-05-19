@@ -1,12 +1,14 @@
 <p itemprop="breadcrumb">
-	<ol class="breadcrumb">
-	{% for breadcrumb in breadcrumb %}
-		<li{% if not loop.last %} class="active"{% endif %}>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+		{% for breadcrumb in breadcrumb %}
+			<li class="breadcrumb-item {% if loop.last %} active{% endif %}" {% if loop.last %} aria-current="page" {% endif %}>
 
-		{% if breadcrumb.url %}<a href="{{ breadcrumb.url }}" title="{{ breadcrumb.title }}">{% endif %}
-			{{ breadcrumb.title }}
-		{% if breadcrumb.url %}</a>{% endif %}
-		</li>
-	{% endfor %}
-	</ol>
+			{% if breadcrumb.url %}<a href="{{ breadcrumb.url }}" title="{{ breadcrumb.title }}">{% endif %}
+				{{ breadcrumb.title }}
+			{% if breadcrumb.url %}</a>{% endif %}
+			</li>
+		{% endfor %}
+		</ol>
+	</nav>
 </p>

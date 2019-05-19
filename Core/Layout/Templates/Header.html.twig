@@ -1,18 +1,14 @@
 {% include "Core/Layout/Templates/CookieBar.html.twig" %}
 
-<div class="navbar navbar-inverse" role="navigation">
+<nav class="navbar navbar-inverse navbar-expand-lg navbar-dark bg-dark" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-			<!--@ToDo label Toggle Navigation -->
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			</button>
 			<a class="navbar-brand" href="/">{{ siteTitle }}</a>
+			<button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 		</div>
-		<div class="navbar-collapse collapse">
+		<div class="navbar-collapse collapse" id="navbarSupportedContent">
 			{# Navigation #}
 			<nav id="headerNavigation">
 				<h4>{{ 'lbl.Subnavigation'|trans|ucfirst }}</h4>
@@ -34,7 +30,7 @@
 			{% endfor %}
 		</div>
 	</div>
-</div>
+</nav>
 
 {# Breadcrumb #}
 <div id="breadcrumb">

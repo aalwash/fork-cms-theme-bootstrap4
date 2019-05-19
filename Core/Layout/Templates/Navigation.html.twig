@@ -21,17 +21,20 @@
 {#{/option:navigation}#}
 {% if navigation %}
 	{% for nav in navigation %}
-		{% if not nav.children %}
-		<li{% if nav.selected %} class="active"{% endif %}>
-			<a href="{{ nav.link }}" title="{{ nav.navigation_title }}"{% if nav.nofollow %} rel="nofollow"{% endif %}>{{ nav.navigation_title|raw }}</a>
+		{% if not nav.children and nav.depth > 1 %}
+			<a href="{{ nav.link }}" class="dropdown-item" title="{{ nav.navigation_title }}"{% if nav.nofollow %} rel="nofollow"{% endif %}>{{ nav.navigation_title|raw }}</a>
 			{% if nav.selected %}{{ nav.children|raw }}{% endif %}
-		</li>
+		{% elseif not nav.children %}
+			<li class="nav-item {% if nav.selected %} active{% endif %}">
+				<a href="{{ nav.link }}" class="nav-link" title="{{ nav.navigation_title }}"{% if nav.nofollow %} rel="nofollow"{% endif %}>{{ nav.navigation_title|raw }}</a>
+				{% if nav.selected %}{{ nav.children|raw }}{% endif %}
+			</li>
 		{% endif %}
 
 		{# Create dropdown menu item if parent has children #}
 		{% if nav.children %}
-			<li{% if nav.selected %} class="active"{% endif %} id="dropdownNavigation">
-				<a href="{{ nav.link }}" class="dropdown-toggle" data-toggle="dropdown" title="{{ nav.navigation_title }}"{% if nav.nofollow %} rel="nofollow"{% endif %}>{{ nav.navigation_title|raw }} <b class="caret"></b></a>
+			<li class="nav-item dropdown {% if nav.selected %} active{% endif %}" id="dropdownNavigation">
+				<a href="{{ nav.link }}" class="dropdown-toggle nav-link" data-toggle="dropdown" title="{{ nav.navigation_title }}"{% if nav.nofollow %} rel="nofollow"{% endif %}>{{ nav.navigation_title|raw }}<b class="caret"></b></a>
 				<ul class="dropdown-menu">
 				{{ nav.children|raw }}
 			</li>
